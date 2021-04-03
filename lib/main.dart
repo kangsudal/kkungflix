@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:netflix_clone/widget/bottom_bar.dart';
 
 void main() {
   runApp(MyApp());
@@ -10,6 +11,7 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  TabController controller;
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -24,13 +26,14 @@ class _MyAppState extends State<MyApp> {
         child: Scaffold(
           body: TabBarView(
             children: [
-              Container(),
-              Container(),
-              Container(),
-              Container(),
+              Container(child: Center(child:Text('home'),),),
+              Container(child: Center(child:Text('search'),),),
+              Container(child: Center(child:Text('save'),),),
+              Container(child: Center(child:Text('more'),),),
             ],
             physics: NeverScrollableScrollPhysics(), //스크롤이안되게
           ),
+          bottomNavigationBar: Bottom(),//NavigationBar 설정
         ),
       ),
     );
