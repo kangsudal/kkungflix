@@ -14,3 +14,16 @@ class _HomeScreenState extends State<HomeScreen>{
     );
   }
 }
+
+class TopBar extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      child: Row(
+        children: [
+          Image.asset('images/logo-netflix.png'),
+        ],
+      ),
+    );
+  }
+}
