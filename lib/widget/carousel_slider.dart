@@ -33,12 +33,12 @@ class _CarouselImageState extends State<CarouselImage> {
     return Container(
       child: Column(
         children: [
+          //상단간격빈공간
           Container(
-            //상단간격빈공간
             padding: EdgeInsets.all(20),
           ),
+          //사진
           CarouselSlider(
-            //사진
             items: images,
             options: CarouselOptions(
               onPageChanged: (index, reason) {
@@ -49,14 +49,15 @@ class _CarouselImageState extends State<CarouselImage> {
               },
             ),
           ),
+          //장르 텍스트
           Container(
-            //장르 텍스트
             padding: EdgeInsets.fromLTRB(0, 10, 0, 3),
             child: Text(
               _currentKeyword,
               style: TextStyle(fontSize: 11),
             ),
           ),
+          //버튼 세개
           Container(
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -125,8 +126,39 @@ class _CarouselImageState extends State<CarouselImage> {
               ],
             ),
           ),
+          //indicator
+          Container(
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: makeIndicator(movies.length, _currentPage),
+            ),
+          ),
         ],
       ),
     );
   }
+}
+
+//indicator
+List<Widget> makeIndicator(int length, int _currentPage) {
+  List<Widget> results = [];
+  for (var i = 0; i < length; i++) {
+    results.add(
+      Container(
+        width: 8,
+        height: 8,
+        margin: EdgeInsets.symmetric(
+          vertical: 10,
+          horizontal: 2,
+        ),
+        decoration: BoxDecoration(
+            shape: BoxShape.circle,
+            color: _currentPage == i
+                ? Color.fromRGBO(
+                    255, 255, 255, 0.9) //i가 currentPage면 진한색 나머지는 연한색
+                : Color.fromRGBO(255, 255, 255, 0.4)),
+      ),
+    );
+  }
+  return results;
 }
