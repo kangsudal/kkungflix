@@ -34,7 +34,7 @@ class _DetailScreenState extends State<DetailScreen> {
                     image: DecorationImage(
                       image: AssetImage(
                         'images/' + widget.movie.poster,
-                      ),  //BackdropFilter와 ImageFilter로 blur처리
+                      ), //BackdropFilter와 ImageFilter로 blur처리
                       fit: BoxFit.cover,
                     ),
                   ),
@@ -52,12 +52,69 @@ class _DetailScreenState extends State<DetailScreen> {
                                   Image.asset('images/' + widget.movie.poster),
                               height: 300,
                             ),
+                            Container(
+                              padding: EdgeInsets.all(7),
+                              child: Text(
+                                '99% 일치 2019 15+ 시즌 1개',
+                                textAlign: TextAlign.center,
+                                style: TextStyle(fontSize: 13),
+                              ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.all(7),
+                              child: Text(
+                                widget.movie.title,
+                                textAlign: TextAlign.center,
+                                style: TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  fontSize: 16,
+                                ),
+                              ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.all(3),
+                              child: TextButton(
+                                style: TextButton.styleFrom(
+                                  backgroundColor: Colors.red,
+                                  primary: Colors.white,
+                                ),
+                                onPressed: () {},
+                                child: Row(
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Icon(Icons.play_arrow),
+                                    Text('재생'),
+                                  ],
+                                ),
+                              ),
+                            ),
+                            Container(
+                              padding: EdgeInsets.all(5),
+                              child: Text(widget.movie.toString()),
+                            ),
+                            Container(
+                              padding: EdgeInsets.all(5),
+                              alignment: Alignment.centerLeft,
+                              child: Text(
+                                '출연:aaa, bbb, ccc\n제작자: xxx, yyy',
+                                style: TextStyle(
+                                  color: Colors.white60,
+                                  fontSize: 12,
+                                ),
+                              ),
+                            ),
                           ]),
                         ),
                       ),
                     ),
                   ),
-                )
+                ),
+                Positioned(
+                  child: AppBar(
+                    backgroundColor: Colors.transparent,
+                    elevation: 0,
+                  ),
+                ),
               ]),
               makeMenuButton(),
             ],
