@@ -29,6 +29,34 @@ class _DetailScreenState extends State<DetailScreen> {
             children: [
               Stack(children: [
                 Container(
+                  width: double.maxFinite, //double이 저장할 수 있는 가장 큰 값
+                  decoration: BoxDecoration(
+                    image: DecorationImage(
+                      image: AssetImage(
+                        'images/' + widget.movie.poster,
+                      ),  //BackdropFilter와 ImageFilter로 blur처리
+                      fit: BoxFit.cover,
+                    ),
+                  ),
+                  child: ClipRect(
+                    child: BackdropFilter(
+                      filter: ImageFilter.blur(sigmaX: 10, sigmaY: 10),
+                      child: Container(
+                        alignment: Alignment.center,
+                        color: Colors.black.withOpacity(0.1),
+                        child: Container(
+                          child: Column(children: [
+                            Container(
+                              padding: EdgeInsets.fromLTRB(0, 45, 0, 10),
+                              child:
+                                  Image.asset('images/' + widget.movie.poster),
+                              height: 300,
+                            ),
+                          ]),
+                        ),
+                      ),
+                    ),
+                  ),
                 )
               ]),
               makeMenuButton(),
