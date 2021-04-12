@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/screen/home_screen.dart';
+import 'package:netflix_clone/screen/more_screen.dart';
 import 'package:netflix_clone/widget/bottom_bar.dart';
 
 void main() {
@@ -30,7 +31,7 @@ class _MyAppState extends State<MyApp> {
               HomeScreen(),
               Container(child: Center(child:Text('search'),),),
               Container(child: Center(child:Text('save'),),),
-              Container(child: Center(child:Text('more'),),),
+              MoreScreen(),
             ],
             physics: NeverScrollableScrollPhysics(), //스크롤이안되게
           ),
