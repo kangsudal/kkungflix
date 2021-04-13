@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "528801244441",
+    "project_id": "kkungflix",
+    "storage_bucket": "kkungflix.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:528801244441:android:6183ab0e3b8caa219a1188",
+        "android_client_info": {
+          "package_name": "com.kangsudal.kkungflix"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "528801244441-g7n7a9chqh1g04s216ujqq1ead2ie27u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCOxcBuMlRC88DewUZYf8JqIM4EcprtnGc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "528801244441-g7n7a9chqh1g04s216ujqq1ead2ie27u.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
