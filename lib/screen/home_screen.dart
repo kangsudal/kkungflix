@@ -58,6 +58,20 @@ class _HomeScreenState extends State<HomeScreen> {
     super.initState();
   }
 
+  Widget _fetchData(BuildContext context) {
+    //stream으로 데이터를 추출하여 위젯으로 만드는 과정
+    return StreamBuilder<QuerySnapshot>(
+      stream: streamData,
+      builder: (context,snapshot){
+        if(!snapshot.hasData) return LinearProgressIndicator();
+        return _buildBody(context, snapshot.data.docs);
+      });
+  }
+
+  Widget _buildBody(BuildContext context, List<DocumentSnapshot> snapshots) {
+    List<Movie> movies = (snapshots.map((snapshot) => Movie.fromSnapshot(snapshot))).toList();
+  }
+
   @override
   Widget build(BuildContext context) {
     return ListView(
