@@ -22,7 +22,7 @@ class _CarouselImageState extends State<CarouselImage> {
   void initState() {
     super.initState();
     movies = widget.movies;
-    images = (movies.map((movie) => Image.asset('./images/' + movie.poster)))
+    images = (movies.map((movie) => Image.network(movie.poster)))
         .toList();
     keywords = movies.map((e) => e.keyword).toList();
     likes = movies.map((e) => e.like).toList();
