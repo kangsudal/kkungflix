@@ -22,8 +22,7 @@ class _CarouselImageState extends State<CarouselImage> {
   void initState() {
     super.initState();
     movies = widget.movies;
-    images = (movies.map((movie) => Image.network(movie.poster)))
-        .toList();
+    images = (movies.map((movie) => Image.network(movie.poster))).toList();
     keywords = movies.map((e) => e.keyword).toList();
     likes = movies.map((e) => e.like).toList();
     _currentKeyword = keywords[0];
@@ -70,11 +69,25 @@ class _CarouselImageState extends State<CarouselImage> {
                       likes[_currentPage]
                           ? IconButton(
                               icon: Icon(Icons.check),
-                              onPressed: () {},
+                              onPressed: () {
+                                setState(() {
+                                  likes[_currentPage] = !likes[_currentPage];
+                                  movies[_currentPage]
+                                      .reference
+                                      .update({'like': likes[_currentPage]});
+                                });
+                              },
                             )
                           : IconButton(
                               icon: Icon(Icons.add),
-                              onPressed: () {},
+                              onPressed: () {
+                                setState(() {
+                                  likes[_currentPage] = !likes[_currentPage];
+                                  movies[_currentPage]
+                                      .reference
+                                      .update({'like': likes[_currentPage]});
+                                });
+                              },
                             ),
                       Text(
                         '내가 찜한 콘텐츠',
@@ -117,13 +130,12 @@ class _CarouselImageState extends State<CarouselImage> {
                         icon: Icon(Icons.info),
                         onPressed: () {
                           Navigator.of(context).push(MaterialPageRoute<Null>(
-                            fullscreenDialog: true,
-                            builder: (BuildContext context){
-                              return DetailScreen(
-                                movie: movies[_currentPage],
-                              );
-                            }
-                          ));
+                              fullscreenDialog: true,
+                              builder: (BuildContext context) {
+                                return DetailScreen(
+                                  movie: movies[_currentPage],
+                                );
+                              }));
                         },
                       ),
                       Text(
