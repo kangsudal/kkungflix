@@ -70,10 +70,6 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget _buildBody(BuildContext context, List<DocumentSnapshot> snapshots) {
     List<Movie> movies = (snapshots.map((snapshot) => Movie.fromSnapshot(snapshot))).toList();
-  }
-
-  @override
-  Widget build(BuildContext context) {
     return ListView(
       children: [
         Stack(
@@ -89,7 +85,12 @@ class _HomeScreenState extends State<HomeScreen> {
           movies: movies,
         ),
       ],
-    );
+    );  
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    return _fetchData(context);
   }
 }
 
