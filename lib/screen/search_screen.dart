@@ -73,10 +73,33 @@ class _SearchScreenState extends State<SearchScreen> {
                             Radius.circular(10),
                           ),
                         ),
+                        border: OutlineInputBorder(
+                          borderSide: BorderSide(color: Colors.transparent),
+                          borderRadius: BorderRadius.all(
+                            Radius.circular(10),
+                          ),
+                        ),
                       ),
                     ),
                     flex: 3,
                   ),
+                  focusNode.hasFocus
+                      ? Expanded(
+                          child: TextButton(
+                            onPressed: () {
+                              setState(() {
+                                _filter.clear();
+                                _searchText = '';
+                                focusNode.unfocus();
+                              });
+                            },
+                            child: Text("취소"),
+                          ),
+                        )
+                      : Expanded(
+                          child: Container(),
+                          flex: 0,
+                        )
                 ],
               ),
             ),
