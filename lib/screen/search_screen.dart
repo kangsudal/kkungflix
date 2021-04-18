@@ -1,4 +1,7 @@
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:netflix_clone/model/model_movie.dart';
+import 'package:netflix_clone/screen/detail_screen.dart';
 
 class SearchScreen extends StatefulWidget {
   @override
@@ -103,9 +106,59 @@ class _SearchScreenState extends State<SearchScreen> {
                 ],
               ),
             ),
+            _buildBody(context),
           ],
         ),
       ),
+    );
+  }
+
+  Widget _buildBody(BuildContext context) {
+    return StreamBuilder<QuerySnapshot>(
+      stream: FirebaseFirestore.instance
+          .collection('movie')
+          .snapshots(), //cloud firestore 데이터 stream
+      builder: (context, snapshots) {
+        if (!snapshots.hasData) return LinearProgressIndicator();
+        return _buildList(context, snapshots.data.docs);
+      },
+    );
+  }
+
+  Widget _buildList(BuildContext context, List<QueryDocumentSnapshot> docs) {
+    List<DocumentSnapshot> searchResults = [];
+    for (DocumentSnapshot d in docs) {
+      if (d.data.toString().contains(_searchText)) {
+        searchResults.add(d); //검색 키워드를 포함한 데이터만 리스트에 담음
+      }
+      else{print("d.data.toString: ${d.data.toString()}");}
+    }
+
+    return Expanded(
+      child: GridView.count(
+        crossAxisCount: 3,
+        childAspectRatio: 1 / 1.5,
+        padding: EdgeInsets.all(3),
+        children: searchResults
+            .map((data) => _buildListItem(context, data))
+            .toList(), //데이터리스트를를 보여줄수있는 위젯으로 가공
+      ),
+    );
+  }
+
+  Widget _buildListItem(BuildContext context, DocumentSnapshot data) {
+    final movie =
+        Movie.fromSnapshot(data); //firestore 데이터를 가공가능한 데이터형태 Movie로 만들어줌
+    return InkWell(
+      child: Image.network(movie.poster),
+      onTap: () {
+        //클릭하면 DetailScreen을 띄워줌
+        Navigator.of(context).push(MaterialPageRoute(
+            fullscreenDialog: true,
+            builder: (BuildContext context) {
+              return DetailScreen(movie: movie);
+            }));
+      },
     );
   }
 }
