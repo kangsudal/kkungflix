@@ -128,7 +128,7 @@ class _SearchScreenState extends State<SearchScreen> {
   Widget _buildList(BuildContext context, List<QueryDocumentSnapshot> docs) {
     List<DocumentSnapshot> searchResults = [];
     for (DocumentSnapshot d in docs) {
-      if (d.data.toString().contains(_searchText)) {
+      if (d.data().toString().toLowerCase().contains(_searchText.toLowerCase())) {
         searchResults.add(d); //검색 키워드를 포함한 데이터만 리스트에 담음
       }
       else{print("d.data.toString: ${d.data.toString()}");}

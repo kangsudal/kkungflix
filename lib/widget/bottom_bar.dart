@@ -36,7 +36,7 @@ class Bottom extends StatelessWidget {
               ),
               child: Text(
                 '저장한컨텐츠목록',
-                style: TextStyle(fontSize: 9),
+                style: TextStyle(fontSize: 5),
               ),
             ),
             Tab(
