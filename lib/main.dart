@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:netflix_clone/screen/home_screen.dart';
+import 'package:netflix_clone/screen/like_screen.dart';
 import 'package:netflix_clone/screen/more_screen.dart';
 import 'package:netflix_clone/screen/search_screen.dart';
 import 'package:netflix_clone/widget/bottom_bar.dart';
@@ -34,7 +35,7 @@ class _MyAppState extends State<MyApp> {
             children: [
               HomeScreen(),
               SearchScreen(),
-              Container(child: Center(child:Text('save'),),),
+              LikeScreen(),
               MoreScreen(),
             ],
             physics: NeverScrollableScrollPhysics(), //스크롤이안되게
